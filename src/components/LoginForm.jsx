@@ -15,9 +15,24 @@ function LoginForm() {
     }));
   };
 
+  const adminCredentials = ["admin@gmail.com", "admin"];
+  const studentCredentials = ["student@gmail.com", "student"];
+
   const submitForm = (e) => {
     e.preventDefault();
-    console.log("data", formData);
+    if (
+      formData.email === adminCredentials[0] &&
+      formData.password === adminCredentials[1]
+    ) {
+      alert("admin");
+    } else if (
+      formData.email === studentCredentials[0] &&
+      formData.password === studentCredentials[1]
+    ) {
+      alert("student");
+    } else {
+      alert("please enter valid username & password");
+    }
   };
 
   return (
@@ -32,6 +47,7 @@ function LoginForm() {
           <input
             name="email"
             type="email"
+            placeholder="email"
             onChange={handleFunction}
             className="border rounded outline-yellow"
           />
@@ -41,6 +57,7 @@ function LoginForm() {
           <input
             name="password"
             type="password"
+            placeholder="password"
             onChange={handleFunction}
             className="border rounded outline-yellow"
           />
