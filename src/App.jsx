@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (
-    <div>
+    <div className="bg-gray">
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
