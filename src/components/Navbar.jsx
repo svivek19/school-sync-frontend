@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <nav>
       {shouldShowNavbar && (
-        <div className="bg-sky-600 py-6 flex flex-row justify-between text-white">
+        <div className="bg-sky-600 py-6 flex flex-row justify-between bg-tahiti text-white">
           <div className="text-3xl px-5 flex items-center">
             <h1>SchoolSync</h1>
           </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
 
           <div className="mx-5 flex items-center text-xl">
             <button
-              className="px-6 py-3 rounded-md bg-red-500 font-medium"
+              className="px-3 py-1 rounded-md bg-yellow font-medium shadow-md" 
               onClick={handleLogout}
             >
               Logout
