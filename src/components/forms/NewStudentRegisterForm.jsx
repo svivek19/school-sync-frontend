@@ -51,7 +51,7 @@ const NewStudentRegisterForm = () => {
             Age
           </label>
           <input
-            type="number"
+            type="date"
             id="age"
             name="age"
             value={formData.age}
