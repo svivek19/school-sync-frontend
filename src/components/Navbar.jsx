@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const naviagte = useNavigate();
   const adminRoute = [
-    { title: "Dashboard", route: "/dashboard" },
-    { title: "Student", route: "/student" },
+    { title: "Dashboard", route: "/admin/dashboard" },
+    { title: "Student", route: "/admin/student" },
   ];
 
   //   Logout function
@@ -38,7 +38,7 @@ const Navbar = () => {
 
           <div className="mx-5 flex items-center text-xl">
             <button
-              className="px-3 py-1 rounded-md bg-yellow font-medium shadow-md" 
+              className="px-3 py-1 rounded-md bg-yellow font-medium shadow-md"
               onClick={handleLogout}
             >
               Logout

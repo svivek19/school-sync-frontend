@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,7 +26,7 @@ function LoginForm() {
       formData.email === adminCredentials[0] &&
       formData.password === adminCredentials[1]
     ) {
-      alert("admin");
+      navigate("/admin/dashboard");
     } else if (
       formData.email === studentCredentials[0] &&
       formData.password === studentCredentials[1]

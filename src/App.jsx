@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
+import Student from "./pages/Student";
+import NewStudentRegisterForm from "./components/forms/NewStudentRegisterForm";
 
 const App = () => {
   return (
@@ -12,7 +14,12 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/student" element={<Student />} />
+          <Route
+            path="/admin/student/student-registration"
+            element={<NewStudentRegisterForm />}
+          />
         </Routes>
       </Router>
     </div>
