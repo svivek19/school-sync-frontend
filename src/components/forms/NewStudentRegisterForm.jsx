@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import axios from "../../utilities/axios";
+import { useNavigate } from "react-router-dom";
 
 const NewStudentRegisterForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
-    age: "",
+    dob: "",
     guardianName: "",
     guardianNumber: "",
     gender: "",
@@ -17,9 +20,20 @@ const NewStudentRegisterForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+    try {
+      const response = await axios.post("/student/add-student", formData);
+
+      if (response.status === 201) {
+        alert("Student data created!");
+        navigate(-1);
+      }
+    } catch (error) {
+      alert("See console");
+      console.log(error);
+    }
   };
 
   return (
@@ -48,13 +62,13 @@ const NewStudentRegisterForm = () => {
             htmlFor="age"
             className="block text-sm font-medium text-gray-700"
           >
-            Age
+            Date of Birth
           </label>
           <input
             type="date"
-            id="age"
-            name="age"
-            value={formData.age}
+            id="dob"
+            name="dob"
+            value={formData.dob}
             onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             required
