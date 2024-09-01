@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "../utilities/axios";
 import { ReactDialogBox } from "react-js-dialog-box";
 import "react-js-dialog-box/dist/index.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ViewPatientDetails = () => {
   const [viewStudent, setViewStudent] = useState({});
   const [formData, setFormData] = useState({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const navigate = useNavigate();
 
   const { _id } = useParams();
 
@@ -57,10 +58,18 @@ const ViewPatientDetails = () => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Form data submitted:", formData);
+    try {
+      const response = await axios.patch(`/student/update/${_id}`, formData);
+      // console.log(response);
+      alert(response.data.message);
+      closeDialog();
+      navigate(-1);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
