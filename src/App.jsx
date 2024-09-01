@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import Student from "./pages/Student";
 import NewStudentRegisterForm from "./components/forms/NewStudentRegisterForm";
+import ViewPatientDetails from "./pages/ViewPatientDetails";
 
 const App = () => {
   return (
@@ -19,6 +20,10 @@ const App = () => {
           <Route
             path="/admin/student/student-registration"
             element={<NewStudentRegisterForm />}
+          />
+          <Route
+            path="/admin/student/studentDetails/:_id"
+            element={<ViewPatientDetails />}
           />
         </Routes>
       </Router>
