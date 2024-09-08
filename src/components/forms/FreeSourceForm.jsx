@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import axios from "../../utilities/axios";
+import { useNavigate } from "react-router-dom";
 
 const FreeSourceForm = () => {
   // State to manage form data
   const [formData, setFormData] = useState({
-    source: "",
-    model: "",
+    sourceType: "",
+    details: "",
     quantity: "",
   });
+  const navigate = useNavigate();
 
   // State to track the selected value of the dropdown
   const [selectedSource, setSelectedSource] = useState("");
@@ -15,7 +18,7 @@ const FreeSourceForm = () => {
   const handleSourceChange = (event) => {
     const { value } = event.target;
     setSelectedSource(value);
-    setFormData({ ...formData, source: value });
+    setFormData({ ...formData, sourceType: value });
   };
 
   // Handler for input change
@@ -25,9 +28,18 @@ const FreeSourceForm = () => {
   };
 
   // Handler for form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form Data:", formData);
+    try {
+      const response = await axios.post(
+        "/freesource/create-free-source",
+        formData
+      );
+      alert(response.statusText);
+      navigate(-1);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -35,14 +47,14 @@ const FreeSourceForm = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label
-            htmlFor="source"
+            htmlFor="sourceType"
             className="block text-sm font-medium text-gray-700"
           >
-            Select free source
+            Select free sourceType
           </label>
           <select
-            name="source"
-            id="source"
+            name="sourceType"
+            id="sourceType"
             value={selectedSource}
             onChange={handleSourceChange}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -56,18 +68,18 @@ const FreeSourceForm = () => {
 
         <div>
           <label
-            htmlFor="model"
+            htmlFor="details"
             className="block text-sm font-medium text-gray-700 uppercase"
           >
             Model
           </label>
           <input
             type="text"
-            id="model"
-            name="model"
-            value={formData.model}
+            id="details"
+            name="details"
+            value={formData.details}
             onChange={handleInputChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full p-2 uppercase border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </div>
 
